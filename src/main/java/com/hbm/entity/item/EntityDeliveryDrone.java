@@ -63,7 +63,6 @@ public class EntityDeliveryDrone extends EntityDroneBase implements IInventory, 
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(IS_EXPRESS, false);
     }
 
     public void setChunkLoading() {

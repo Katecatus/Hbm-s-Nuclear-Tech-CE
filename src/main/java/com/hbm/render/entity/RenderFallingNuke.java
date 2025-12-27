@@ -8,6 +8,7 @@ import com.hbm.render.loader.IModelCustom;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 @AutoRegister(factory = "FACTORY")
@@ -31,7 +32,12 @@ public class RenderFallingNuke extends Render<EntityFallingNuke> {
 		GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
         
-		switch(entity.getDataManager().get(EntityFallingNuke.FACING))
+		EnumFacing facing = EnumFacing.NORTH;
+		try {
+			facing = entity.getDataManager().get(EntityFallingNuke.FACING);
+		} catch(ClassCastException e) { }
+
+		switch(facing)
 		{
 		case NORTH:
 			GlStateManager.rotate(0, 0F, 1F, 0F);

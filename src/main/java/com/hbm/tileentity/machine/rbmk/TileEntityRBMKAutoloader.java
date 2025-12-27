@@ -177,18 +177,16 @@ public class TileEntityRBMKAutoloader extends TileEntityMachineBase implements I
     @Override
     public void invalidate() {
         super.invalidate();
-        stopLiftSound();
+        if(world.isRemote && this.audioLift != null) {
+            this.audioLift.stopSound();
+            this.audioLift = null;
+        }
     }
 
     @Override
     public void onChunkUnload() {
         super.onChunkUnload();
-        stopLiftSound();
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void stopLiftSound() {
-        if (this.audioLift != null) {
+        if(world.isRemote && this.audioLift != null) {
             this.audioLift.stopSound();
             this.audioLift = null;
         }

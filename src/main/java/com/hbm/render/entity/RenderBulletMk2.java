@@ -69,8 +69,13 @@ public class RenderBulletMk2 extends Render<EntityBulletBase> {
 	public void doRender(EntityBulletBase bullet, double x, double y, double z, float entityYaw, float partialTicks) {
 		GlStateManager.pushMatrix();
 		
-		int style = bullet.getDataManager().get(EntityBulletBase.STYLE);
-		int trail = bullet.getDataManager().get(EntityBulletBase.TRAIL);
+		int style = 0;
+		int trail = 0;
+
+		try {
+			style = bullet.getDataManager().get(EntityBulletBase.STYLE);
+			trail = bullet.getDataManager().get(EntityBulletBase.TRAIL);
+		} catch(ClassCastException e) { }
 		
 		GlStateManager.translate((float) x, (float) y, (float) z);
 		if(style != BulletConfiguration.STYLE_TRACER){

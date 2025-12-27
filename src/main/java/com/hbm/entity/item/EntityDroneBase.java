@@ -58,6 +58,7 @@ public class EntityDroneBase extends Entity {
     @Override
     protected void entityInit() {
         this.dataManager.register(APPEARANCE, (byte) 0);
+        this.dataManager.register(IS_EXPRESS, false);
     }
 
     /**
